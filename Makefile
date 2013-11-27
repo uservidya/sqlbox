@@ -1,4 +1,8 @@
+
+TESTS = test/*.js
+TESTDATA = shippable/testresults
 test:
-	SQLBOX_ENV=TEST ./node_modules/.bin/mocha
+        mkdir -p $(TESTDATA)
+    SQLBOX_ENV =$(TESTDATA)/result.xml ./node_modules/mocha/bin/mocha --timeout 5000 --reporter=xunit-file $(TESTS)
 
 .PHONY: test
